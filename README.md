@@ -1,4 +1,4 @@
-#🤖 Survis AI – Your Smart Chat Companion
+# 🤖 Survis AI – Your Smart Chat Companion
 
 Survis AI is an intelligent chatbot built using the Gemini API that enables real-time, human-like conversations. Designed for both assistance and casual interaction, Survis AI processes user input and responds with contextually relevant answers. The project demonstrates how large language models can be integrated into a modern web interface to build interactive and responsive applications.
 
