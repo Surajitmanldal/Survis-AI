@@ -5,6 +5,14 @@ Survis AI is an intelligent chatbot built using the Gemini API that enables real
 
 ---
 
+
+## 🔗 Live Site
+
+🌐 [View Live Website](https://survisai.netlify.app/)
+
+
+---
+
 ## 📸 Screenshots
 
 ![Home](public/screenshots/home.png)  
