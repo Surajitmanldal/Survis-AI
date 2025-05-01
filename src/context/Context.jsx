@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
-import main from "../config/survis";
+import { createContext, useEffect, useState } from "react";
+// import main from "../config/survis";
+import main from "../config/index";
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 export const Context = createContext();
@@ -11,6 +12,8 @@ const ContextProvider = ({ children }) => {
     const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
     const [resultData, setResultData] = useState("");
+
+
     const delayPara = (index, nextWord) => {
         setTimeout(() => {
             setResultData(prev => prev + nextWord)
@@ -31,6 +34,7 @@ const ContextProvider = ({ children }) => {
             setPrevPrompts(prev => [...prev, input])
             setRecentPrompt(input)
             response = await main(input);
+            console.log(response);
         }
         const html = DOMPurify.sanitize(marked(response || ""));
         let newResponse = html.split(" ");
