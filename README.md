@@ -21,24 +21,39 @@ Survis AI is an intelligent chatbot built using the Gemini API that enables real
 ---
 
 ## 🌟 Features
-
--💬 Real-time text-based interaction
--🔗 Powered by Google’s Gemini API
--🖥️ Clean and responsive user interface
--⚠️ Robust error handling for API requests
--🔧 Easily customizable and extendable
+- 💬 Real-time text-based interaction
+- 🔗 Powered by Google’s Gemini API (via SDK)
+- 🖥️ Clean and responsive user interface
+- ⚙️ Separate backend server for secure API communication
+- 🔐 API key is securely stored in backend (not exposed in frontend)
+- 🌐 Fully deployed on Render (backend) and [Vercel/Netlify] (frontend) (mention platform if deployed)
+- ⚠️ Robust error handling and fallback messages for failed responses
+- 🔧 Easily customizable and extendable architecture
+- 🧩 Modular code structure for scalability
 
 
 ---
 
+## 🛠️ Tech Stack
 
-## 🚀 Tech Stack
-
+### Frontend:
 - **React** (with hooks and components)
 - **React Router DOM** (v6+)
 - **HTML5 & CSS3**
 - **JavaScript (ES6+)**
-- **API Integration: Gemini API** (Google's Generative AI)
+- **API Integration: Gemini API** (Google's Generative AI via SDK)
+
+### Backend:
+- **Node.js** (JavaScript runtime)
+- **Express.js** (Web server framework)
+- **Google GenAI SDK** (Gemini integration)
+- **CORS** (for cross-origin requests)
+- **dotenv** (for environment variable management)
+
+### Deployment:
+- **Render** (Backend hosting)
+- **[Vercel / Netlify]** (Frontend hosting — update this with whichever you're using)
+
 
 ---
 
@@ -50,3 +65,10 @@ Survis AI is an intelligent chatbot built using the Gemini API that enables real
 
 - 💼 LinkedInn: https://www.linkedin.com/in/surajit-mandal-b7148a306/
 
+## 🛠️ Project Setup
+
+```bash
+git clone https://github.com/Surajitmanldal/Survis-AI
+cd Crypto-place
+npm install
+npm start
