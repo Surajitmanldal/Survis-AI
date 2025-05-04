@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import { assets } from '../../assets/assets'
 import './main.css'
 import { Context } from '../../context/Context'
@@ -22,6 +22,37 @@ const Main = () => {
             }
         }
     }
+    const recognitionRef = useRef(null);
+    const [isListening, setIsListening] = useState(false);
+    // Check for browser support
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition && !recognitionRef.current) {
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.lang = "en-US";
+        recognitionRef.current.interimResults = false;
+        recognitionRef.current.continuous = false;
+        recognitionRef.current.onstart = () => setIsListening(true);
+        recognitionRef.current.onend = () => setIsListening(false);
+
+        recognitionRef.current.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            setInput(transcript);
+        };
+
+        recognitionRef.current.onerror = (event) => {
+            console.error("Speech recognition error:", event.error);
+            setIsListening(false);
+        };
+    }
+
+    const handleMicClick = () => {
+        if (recognitionRef.current) {
+            recognitionRef.current.start();
+        }
+    };
+
 
     return (
         <div className='main'>
@@ -76,7 +107,7 @@ const Main = () => {
                         <input type="text" placeholder='Enter a prompt here' onChange={(e) => setInput(e.target.value)} value={input} onKeyDown={handleEnterPress} />
                         <div>
                             <img src={assets.gallery_icon} alt="" />
-                            <img src={assets.mic_icon} alt="" />
+                            <img src={assets.mic_icon} alt="" onClick={handleMicClick} className={`mic-button ${isListening ? "listening" : ""}`} />
                             {input.trim() !== '' && <img src={assets.send_icon} alt="" onClick={() => onSent()} />}
 
                         </div>
