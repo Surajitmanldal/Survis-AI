@@ -21,39 +21,42 @@ Survis AI is an intelligent chatbot built using the Gemini API that enables real
 ---
 
 ## 🌟 Features
-- 💬 Real-time text-based interaction
-- 🔗 Powered by Google’s Gemini API (via SDK)
-- 🖥️ Clean and responsive user interface
-- ⚙️ Separate backend server for secure API communication
-- 🔐 API key is securely stored in backend (not exposed in frontend)
-- 🌐 Fully deployed on Render (backend) and [Vercel/Netlify] (frontend) (mention platform if deployed)
-- ⚠️ Robust error handling and fallback messages for failed responses
-- 🔧 Easily customizable and extendable architecture
-- 🧩 Modular code structure for scalability
+- 💬 Real-time text-based conversation with typing animation
+- 🚀 Integrated with **Google Gemini API** using the official SDK
+- 🧠 Maintains conversation context and history
+- 🧩 Uses **Redux Toolkit** for state management
+- 🔁 Stores recent and previous prompts
+- ♻️ Persists data with **Redux Persist** (across page reloads)
+- ⏳ Loading state handling and user feedback
+- 🎨 Responsive and clean UI design
+- 🔐 API key is stored securely in the backend
+- 🌐 Deployed on **Render** (Backend) and **Netlify** (Frontend)
+- 📦 Modular architecture for easy scaling and feature expansion
+
 
 
 ---
-
 ## 🛠️ Tech Stack
 
 ### Frontend:
-- **React** (with hooks and components)
+- **React** (with functional components and hooks)
+- **Redux Toolkit** (for global state management)
+- **Redux Persist** (for persistent state)
 - **React Router DOM** (v6+)
-- **HTML5 & CSS3**
-- **JavaScript (ES6+)**
-- **API Integration: Gemini API** (Google's Generative AI via SDK)
+- **HTML5, CSS3, JavaScript (ES6+)**
+- **DOMPurify & marked** (for rendering sanitized Markdown)
+- **API Integration: Gemini API**
 
 ### Backend:
 - **Node.js** (JavaScript runtime)
-- **Express.js** (Web server framework)
+- **Express.js** (Web framework)
 - **Google GenAI SDK** (Gemini integration)
-- **CORS** (for cross-origin requests)
-- **dotenv** (for environment variable management)
+- **CORS** (Cross-Origin Resource Sharing)
+- **dotenv** (Environment variable management)
 
 ### Deployment:
-- **Render** (Backend hosting)
-- **[Vercel / Netlify]** (Frontend hosting — update this with whichever you're using)
-
+- **Render** (Backend)
+- **Netlify** (Frontend)
 
 ---
 

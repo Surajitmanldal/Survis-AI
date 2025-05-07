@@ -1,24 +1,25 @@
 import React, { useContext, useState, useRef } from 'react'
 import { assets } from '../../assets/assets'
 import './main.css'
-import { Context } from '../../context/Context'
 import Nav from '../nav/Nav'
+import { useDispatch, useSelector } from 'react-redux'
+import { InputDataSliceActions } from '../../store/InputDataSlice'
+import { onSent } from '../../store/FetchingData'
 const Main = () => {
-    const {
-        onSent,
-        recentPrompt,
-        showResult,
-        loading,
-        resultData,
-        input,
-        setInput,
-    } = useContext(Context);
+    const recent = useSelector(store => store.recentStatus);
+    const showResult = useSelector(store => store.resultStatus);
+    const loading = useSelector(store => store.loadingStatus);
+    const resultData = useSelector(store => store.resultDataStatus);
+    const input = useSelector(store => store.inputDataStatus);
+
+    const dispatch = useDispatch();
+
 
 
     const handleEnterPress = (e) => {
         if (input.trim() !== '') {
             if (e.key === 'Enter') {
-                onSent();
+                dispatch(onSent());
             }
         }
     }
@@ -38,7 +39,7 @@ const Main = () => {
 
         recognitionRef.current.onresult = (event) => {
             const transcript = event.results[0][0].transcript;
-            setInput(transcript);
+            dispatch(InputDataSliceActions.setInput(transcript))
         };
 
         recognitionRef.current.onerror = (event) => {
@@ -87,7 +88,7 @@ const Main = () => {
                     : <div className="result">
                         <div className="result-title">
                             <img src={assets.surajit} alt="" />
-                            <p>{recentPrompt}</p>
+                            <p>{recent}</p>
                         </div>
                         <div className="result-data">
                             <img src={assets.gemini_icon} alt="" />
@@ -104,11 +105,12 @@ const Main = () => {
 
                 <div className="main-bottom">
                     <div className="search-box">
-                        <input type="text" placeholder='Enter a prompt here' onChange={(e) => setInput(e.target.value)} value={input} onKeyDown={handleEnterPress} />
+                        <input type="text" placeholder='Enter a prompt here' onChange={(e) => dispatch(InputDataSliceActions.setInput(e.target.value))} value={input} onKeyDown={handleEnterPress} />
                         <div>
                             <img src={assets.gallery_icon} alt="" />
                             <img src={assets.mic_icon} alt="" onClick={handleMicClick} className={`mic-button ${isListening ? "listening" : ""}`} />
-                            {input.trim() !== '' && <img src={assets.send_icon} alt="" onClick={() => onSent()} />}
+
+                            {input.trim() !== '' && <img src={assets.send_icon} alt="" onClick={() => dispatch(onSent())} />}
 
                         </div>
                     </div>

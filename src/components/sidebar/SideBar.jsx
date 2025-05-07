@@ -1,17 +1,28 @@
 import React, { useContext, useState } from 'react'
 import './sidebar.css'
 import { assets } from '../../assets/assets'
-import { Context } from '../../context/Context';
+import { useDispatch, useSelector } from 'react-redux';
+import { ShowResultSliceActions } from '../../store/ShowResultSlice';
+import { onSent } from '../../store/FetchingData';
+import { MdDelete } from "react-icons/md";
+import { PrevPromptSliceActions } from '../../store/PrevPromptsSlice';
 
 const SideBar = () => {
+    const dispatch = useDispatch();
+    const prevPrompts = useSelector(store => store.prevStatus);
     const [extended, setExtended] = useState(false);
-    const { prevPrompts, onSent, setRecentPrompt, setShowResult } = useContext(Context);
+
     const loadPrompt = async (prompt) => {
-        await onSent(prompt);
+        await dispatch(onSent(prompt));
     }
 
     const handleNewChat = () => {
-        setShowResult(false);
+        dispatch(ShowResultSliceActions.setShowResult(false));
+    }
+
+    const handleDelete = (e, index) => {
+        e.stopPropagation();
+        dispatch(PrevPromptSliceActions.deletePrompt(index));
     }
 
     return (
@@ -39,6 +50,7 @@ const SideBar = () => {
                                 >
                                     <img src={assets.message_icon} alt="" />
                                     <p>{item.slice(0, 18)}...</p>
+                                    <MdDelete onClick={(e) => handleDelete(e, index)} />
                                 </div>
                             )
                         })}

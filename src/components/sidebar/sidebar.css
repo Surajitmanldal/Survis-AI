@@ -84,12 +84,40 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     margin: 4px 0;
+    position: relative;
+    padding-right: 40px;
+}
+
+.recent-entry .item {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .recent-entry:hover {
     background-color: #ffffff;
     transform: translateX(4px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.recent-entry svg {
+    position: absolute;
+    right: 12px;
+    color: #666;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+}
+
+.recent-entry:hover svg {
+    opacity: 1;
+}
+
+.recent-entry svg:hover {
+    color: #ef4444;
+    transform: scale(1.1);
 }
 
 .recent-entry img {
